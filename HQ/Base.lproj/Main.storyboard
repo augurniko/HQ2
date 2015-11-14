@@ -1,25 +1,212 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ypf-3A-AwD">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Country-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i46-Cp-xGU">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="FX8-fz-rYc"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="eGB-h7-QJY"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="i46-Cp-xGU" secondAttribute="trailing" constant="-20" id="1KL-An-Ce5"/>
+                            <constraint firstItem="i46-Cp-xGU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2Vn-28-0dr"/>
+                            <constraint firstItem="i46-Cp-xGU" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="6Ub-0H-NEI"/>
+                            <constraint firstItem="i46-Cp-xGU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="qwK-t3-L0M"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Country" id="jgK-Af-14s"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="countryTableView" destination="i46-Cp-xGU" id="K8V-Gf-5Uk"/>
+                        <segue destination="wQU-KE-cQ7" kind="push" identifier="pushcityview" id="Hjk-Ob-9Hp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-2054" y="-83"/>
+        </scene>
+        <!--City-->
+        <scene sceneID="yOz-E2-rVp">
+            <objects>
+                <viewController storyboardIdentifier="cityView" id="wQU-KE-cQ7" customClass="cityViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bO2-bi-fS3"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wpn-bH-dLk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="He0-5V-zaJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qaA-Xe-Q6G">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="wQU-KE-cQ7" id="UVq-6Y-DrN"/>
+                                    <outlet property="delegate" destination="wQU-KE-cQ7" id="bJ0-ZK-0YT"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="qaA-Xe-Q6G" secondAttribute="trailing" constant="-20" id="4Mc-rY-hVI"/>
+                            <constraint firstItem="qaA-Xe-Q6G" firstAttribute="centerY" secondItem="He0-5V-zaJ" secondAttribute="centerY" id="L07-iX-CzN"/>
+                            <constraint firstItem="qaA-Xe-Q6G" firstAttribute="leading" secondItem="He0-5V-zaJ" secondAttribute="leadingMargin" constant="-20" id="L5V-JX-CAB"/>
+                            <constraint firstItem="qaA-Xe-Q6G" firstAttribute="height" secondItem="He0-5V-zaJ" secondAttribute="height" id="ekq-FH-JgB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="City" id="7gP-E7-9wA"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="cityTableView" destination="qaA-Xe-Q6G" id="9wJ-ts-owQ"/>
+                        <segue destination="mHV-mt-QNh" kind="push" identifier="pushweatherview" id="u84-pY-919"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wLl-BM-K1D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1281" y="-83"/>
+        </scene>
+        <!--Weather-->
+        <scene sceneID="aI1-Ur-jbf">
+            <objects>
+                <viewController id="mHV-mt-QNh" customClass="weatherViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vIS-nq-RPL"/>
+                        <viewControllerLayoutGuide type="bottom" id="1XN-uU-uq9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JR1-R0-s3w">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="117" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aSg-cQ-Gha">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myWeatherCell" rowHeight="117" id="rhJ-zJ-Oem" customClass="weatherTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="117"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" tableViewCell="rhJ-zJ-Oem" id="5XT-Ua-Ff3">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="116"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QF2-ys-1eH">
+                                                    <rect key="frame" x="18" y="17" width="116" height="82"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReA-gm-4zE">
+                                                    <rect key="frame" x="142" y="0.0" width="450" height="24"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Maximum celcius" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Du-48-aqQ">
+                                                    <rect key="frame" x="145" y="32" width="311" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Minimum celcius" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KL4-W0-pqo">
+                                                    <rect key="frame" x="145" y="58" width="314" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Summery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjB-FM-ubG">
+                                                    <rect key="frame" x="145" y="87" width="200" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" red="0.086099005523877087" green="0.025402867069691283" blue="0.30020860602094246" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.14908392002765875" green="0.04398609460873322" blue="0.51982337704503723" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="weatherImage" destination="QF2-ys-1eH" id="kBP-Xp-Ae3"/>
+                                            <outlet property="weatherMaxCelcius" destination="3Du-48-aqQ" id="WpR-sF-2Lh"/>
+                                            <outlet property="weatherMinCelcius" destination="KL4-W0-pqo" id="5Bj-oJ-J6L"/>
+                                            <outlet property="weatherSummery" destination="qjB-FM-ubG" id="mhO-y3-arM"/>
+                                            <outlet property="weatherTitle" destination="ReA-gm-4zE" id="nOh-E0-fxE"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mHV-mt-QNh" id="eCe-iI-UdW"/>
+                                    <outlet property="delegate" destination="mHV-mt-QNh" id="JvW-2D-Y3L"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aSg-cQ-Gha" firstAttribute="height" secondItem="JR1-R0-s3w" secondAttribute="height" id="52N-qX-VaV"/>
+                            <constraint firstItem="aSg-cQ-Gha" firstAttribute="centerY" secondItem="JR1-R0-s3w" secondAttribute="centerY" id="87H-1t-9Rz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aSg-cQ-Gha" secondAttribute="trailing" constant="-20" id="iAu-OC-K5t"/>
+                            <constraint firstItem="aSg-cQ-Gha" firstAttribute="leading" secondItem="JR1-R0-s3w" secondAttribute="leadingMargin" constant="-20" id="lOO-qc-mPr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Weather" id="5d1-KI-7CS"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="weatherTableView" destination="aSg-cQ-Gha" id="aWM-iM-M80"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qEC-rz-qyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-496" y="-83"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QBW-uR-CP6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ypf-3A-AwD" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="agf-rl-m6k">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="tintColor" red="1" green="0.97355227770047448" blue="0.98133584544619135" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.27590886704057771" green="0.48735148188589855" blue="0.84430219240837689" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.97355227770047448" blue="0.98133584544619135" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="PzQ-Xd-Hue"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2EI-dR-bpk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2797" y="-83"/>
         </scene>
     </scenes>
 </document>

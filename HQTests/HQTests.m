@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "manager.h"
 
 @interface HQTests : XCTestCase
 
@@ -22,6 +23,34 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+}
+
+- (void)testSetAllOption
+{
+    NSArray *json = [[manager sharedSingleton] getJson];
+    for (NSInteger nbCountry = 0;nbCountry < [json count];nbCountry ++)
+    {
+        NSString *country = [[json objectAtIndex:nbCountry] countryName];
+        [[manager sharedSingleton] setCityForCountry:country];
+        NSArray *resultCity = [[manager sharedSingleton] getCity];
+        XCTAssertGreaterThan([resultCity count], 0);
+        NSLog(@"%@ return %i city",country,[resultCity count]);
+        for (NSInteger nbCity = 0;nbCity < [resultCity count];nbCity ++)
+        {
+            NSString *city = [[resultCity objectAtIndex:nbCity] cityName];
+            [[manager sharedSingleton] setWeatherForCity:city];
+            NSArray *resultWeather = [[manager sharedSingleton] getWeather];
+            XCTAssertGreaterThan([resultWeather count], 0);
+            NSLog(@"%@ return %i weather",city,[resultWeather count]);
+        }
+    }
+}
+
+- (void)testSetCityForCountry
+{
+    [[manager sharedSingleton] setCityForCountry:@"Australia"];
+    NSArray *result = [[manager sharedSingleton] getCity];
+    XCTAssertGreaterThan([result count], 0);
 }
 
 - (void)testExample {

@@ -1,32 +1,32 @@
 //
-//  ViewController.m
+//  weatherViewController.m
 //  HQ
 //
-//  Created by Mac on 12/11/2015.
+//  Created by Mac on 13/11/2015.
 //  Copyright © 2015 Mac. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "weatherViewController.h"
 #import "manager.h"
+#import "weatherTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface ViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface weatherViewController () <UITableViewDelegate,UITableViewDataSource>
 {
-    IBOutlet UITableView    *countryTableView;
+    IBOutlet UITableView    *weatherTableView;
     
-    NSArray                 *countryList;
+    NSArray                 *weatherList;
 }
 
 @end
 
-@implementation ViewController
+@implementation weatherViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-
-    [[manager sharedSingleton] parseTheJson];
-    countryList = [[manager sharedSingleton] getJson];
+    // Do any additional setup after loading the view.    
+    weatherList = [[manager sharedSingleton] getWeather];
+    weatherTableView.allowsSelection = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,37 +42,39 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [countryList count];
+    if ([weatherList count] > 5)
+        return 5;
+    else
+        return [weatherList count];
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *simpleTableIdentifier = @"tableCell";
+    static NSString *simpleTableIdentifier = @"myWeatherCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    weatherTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
+    NSArray *titleDay = [[[weatherList objectAtIndex:indexPath.row] dayName] componentsSeparatedByString:@" "];
+    cell.weatherTitle.text = [titleDay objectAtIndex:0];
+    cell.weatherMaxCelcius.text = [NSString stringWithFormat:@"Max : %@°",[[[weatherList objectAtIndex:indexPath.row] dayMaxCelsius] stringValue]];
+    cell.weatherMinCelcius.text = [NSString stringWithFormat:@"Min : %@°",[[[weatherList objectAtIndex:indexPath.row] dayMinCelsius] stringValue]];
+    cell.weatherSummery.text = [[weatherList objectAtIndex:indexPath.row] daySummery];
     
-    cell.textLabel.text = [[countryList objectAtIndex:indexPath.row] countryName];
-    
-    NSString *pictUrl = [[countryList objectAtIndex:indexPath.row] countryImageUrl];
-    
+    NSString *pictUrl = [[weatherList objectAtIndex:indexPath.row] dayIconUrl];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL: [NSURL URLWithString:pictUrl]];
     
-    __weak UITableViewCell *weakCell = cell;
-    [cell.imageView setImageWithURLRequest:urlRequest
+    __weak weatherTableViewCell *weakCell = cell;
+    [cell.weatherImage setImageWithURLRequest:urlRequest
                           placeholderImage:[UIImage imageNamed:@"placeHolder.png"]
                                    success: ^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                        
-                                       __strong UITableViewCell *strongCell = weakCell;
+                                       __strong weatherTableViewCell *strongCell = weakCell;
                                        
                                        strongCell.imageView.image = image;
                                        
                                        [tableView reloadRowsAtIndexPaths: @[indexPath]
                                                         withRowAnimation: UITableViewRowAnimationNone];
-                                       NSLog(@"Your image request succeeded!");
+                                       NSLog(@"Weather Your image request succeeded!");
                                    } failure: ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                        NSLog(@"Your image request failed...");
                                        
@@ -82,15 +84,8 @@
      
      ];
     
-    
-    
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [[manager sharedSingleton] setCityForCountry:[[countryList objectAtIndex:indexPath.row] countryName]];
-    [self performSegueWithIdentifier:@"pushcityview" sender:self];
-}
 
 @end
